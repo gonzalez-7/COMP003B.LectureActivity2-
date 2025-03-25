@@ -19,16 +19,23 @@ namespace COMP003B.LectureActivity2
                 app.UseHsts();
             }
 
+            // Middleware sequence
+
             app.UseHttpsRedirection();
+            
+            app.UseStaticFiles();
+
+            app.UseMiddleware<COMP003B.LectureActivity2.Middleware.RequestLoggingMiddleware>();
+            
+            app.UseWelcomePage("/welcome");
+
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }
