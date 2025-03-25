@@ -15,5 +15,11 @@ namespace COMP003B.LectureActivity2.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult About()
+        {
+            return View();
+        }
     }
 }
